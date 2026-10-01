@@ -5,6 +5,7 @@ import { ThemedIcon } from "@/components/themed-icon";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Font } from "@/constants/font";
+import { useRouter } from "expo-router";
 
 const actions = [
   {
@@ -22,6 +23,7 @@ const actions = [
 ];
 
 export function QuickActions() {
+  const router = useRouter();
   return (
     <ThemedView style={styles.container}>
       <ThemedText style={styles.heading}>Quick Actions</ThemedText>
@@ -31,9 +33,14 @@ export function QuickActions() {
           const Icon = action.icon;
 
           return (
-            <Pressable key={action.label} style={styles.actionButton}>
+            <Pressable
+              key={action.label}
+              style={styles.actionButton}
+              onPress={() => {
+                router.push("/hello");
+              }}
+            >
               <ThemedView type="primaryLight" style={styles.iconContainer}>
-                {/* <Icon  size={20} /> */}
                 <ThemedIcon icon={action.icon} size={20} type="primary" />
               </ThemedView>
 
